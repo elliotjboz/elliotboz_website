@@ -330,6 +330,56 @@ img {
   margin-bottom: 24px;
 }
 
+/* ===== ABOUT PAGE ===== */
+.about-wrap {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 60px 48px 80px;
+}
+
+.about-photo-wrap {
+  margin-bottom: 40px;
+}
+
+.about-photo {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 2px;
+}
+
+.about-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.about-body {
+  font-size: 19px;
+  line-height: 1.8;
+  color: #2a2a2a;
+}
+
+.about-body p {
+  margin-bottom: 24px;
+}
+
+.about-contact {
+  margin-top: 40px;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+.about-contact a {
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+
+.about-contact a:hover {
+  opacity: 0.6;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .site-nav {
@@ -376,6 +426,14 @@ img {
     padding: 40px 24px 60px;
   }
 
+  .about-wrap {
+    padding: 40px 24px 60px;
+  }
+
+  .about-title {
+    font-size: 32px;
+  }
+
   .post-wrap {
     padding: 0 24px 60px;
   }
@@ -403,6 +461,7 @@ img {
   .gallery-header,
   .masonry-grid,
   .thoughts-list,
+  .about-wrap,
   .post-wrap {
     padding-left: 16px;
     padding-right: 16px;
