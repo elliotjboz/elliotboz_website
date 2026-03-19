@@ -350,6 +350,34 @@ img {
   line-height: 1.8;
 }
 
+/* ===== FOOTER ===== */
+.site-footer {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 60px 40px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(26, 26, 26, 0.12);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #888;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: #888;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #1a1a1a;
+}
+
 /* ===== RESPONSIVE ===== */
 
 /* Tablet */
@@ -463,6 +491,17 @@ img {
 
   .lightbox-arrow.next {
     right: 8px;
+  }
+
+  .site-footer {
+    padding: 40px 20px 30px;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-links {
+    gap: 20px;
   }
 }
 
