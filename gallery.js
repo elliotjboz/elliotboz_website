@@ -1,3 +1,88 @@
+// ===== BALANCED MASONRY =====
+// Replaces CSS column masonry with JS-based balancing to avoid uneven columns
+(function () {
+  var grid = document.querySelector('.masonry-grid');
+  if (!grid) return;
+
+  function balanceColumns() {
+    var items = Array.from(grid.querySelectorAll('.gallery-item'));
+    var visibleItems = items.filter(function (item) {
+      return item.style.display !== 'none' && item.querySelector('img').naturalWidth > 0;
+    });
+
+    if (visibleItems.length === 0) return;
+
+    // Determine column count from CSS
+    var style = getComputedStyle(grid);
+    var colCount = parseInt(style.columnCount) || 3;
+
+    // Reset any previous ordering
+    items.forEach(function (item) { item.style.order = ''; });
+
+    // Measure each visible item's height
+    // Temporarily switch to flexbox to measure
+    grid.style.display = 'flex';
+    grid.style.flexWrap = 'wrap';
+    grid.style.columnCount = 'auto';
+
+    // Create column containers
+    var columns = [];
+    var columnHeights = [];
+    for (var c = 0; c < colCount; c++) {
+      columns.push([]);
+      columnHeights.push(0);
+    }
+
+    // Assign each item to the shortest column
+    visibleItems.forEach(function (item) {
+      var img = item.querySelector('img');
+      var aspectRatio = img.naturalHeight / img.naturalWidth;
+      var estimatedHeight = aspectRatio * 100; // relative height
+
+      // Find shortest column
+      var shortest = 0;
+      for (var c = 1; c < colCount; c++) {
+        if (columnHeights[c] < columnHeights[shortest]) shortest = c;
+      }
+
+      columns[shortest].push(item);
+      columnHeights[shortest] += estimatedHeight + 8; // 8px gap
+    });
+
+    // Revert to column layout and reorder items
+    grid.style.display = '';
+    grid.style.flexWrap = '';
+    grid.style.columnCount = '';
+
+    // Clear and re-append in balanced order
+    // Column-count fills top-to-bottom per column, so we interleave
+    var maxLen = Math.max.apply(null, columns.map(function (col) { return col.length; }));
+    var fragment = document.createDocumentFragment();
+
+    // For CSS columns, items flow top-to-bottom in column 1, then column 2, etc.
+    // So we append all column 1 items, then column 2, then column 3
+    for (var c = 0; c < colCount; c++) {
+      for (var r = 0; r < columns[c].length; r++) {
+        fragment.appendChild(columns[c][r]);
+      }
+    }
+
+    // Also re-append hidden items at the end
+    items.forEach(function (item) {
+      if (item.style.display === 'none' || item.querySelector('img').naturalWidth === 0) {
+        fragment.appendChild(item);
+      }
+    });
+
+    grid.appendChild(fragment);
+  }
+
+  window.addEventListener('load', function () {
+    // Small delay to ensure all images are fully rendered
+    setTimeout(balanceColumns, 100);
+  });
+})();
+
 // ===== LIGHTBOX =====
 (function () {
   let currentIndex = 0;
