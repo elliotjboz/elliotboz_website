@@ -32,8 +32,8 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 40px 60px;
-  max-width: 1600px;
+  padding: 40px 40px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
@@ -68,16 +68,16 @@ img {
 
 /* ===== HOMEPAGE ===== */
 .hero-spacer {
-  height: 120px;
+  height: 40px;
 }
 
 .category-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 1500px;
+  gap: 20px;
+  max-width: 1800px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0 40px;
 }
 
 .category-tile {
@@ -104,7 +104,7 @@ img {
 
 .category-tile .tile-label {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   letter-spacing: 0.02em;
 }
@@ -112,7 +112,7 @@ img {
 /* ===== BACK LINK ===== */
 .back-link {
   display: inline-block;
-  max-width: 1500px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 24px 60px 0;
   font-size: 16px;
@@ -126,13 +126,13 @@ img {
 }
 
 .page-back-wrap {
-  max-width: 1500px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
 /* ===== GALLERY PAGE ===== */
 .gallery-header {
-  max-width: 1500px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 16px 60px 32px;
 }
@@ -144,7 +144,7 @@ img {
 }
 
 .masonry-grid {
-  max-width: 1500px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 0 60px 80px;
   column-count: 3;
@@ -162,8 +162,9 @@ img {
 .masonry-grid .gallery-item img {
   width: 100%;
   display: block;
-  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, opacity 0.6s ease;
 }
+
 
 .masonry-grid .gallery-item:hover img {
   filter: brightness(1.05);
@@ -350,36 +351,69 @@ img {
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 24px;
+    gap: 14px;
+  }
+
+  .category-tile .tile-label {
+    font-size: 17px;
+  }
+
+  .masonry-grid {
+    column-count: 2;
+    padding: 0 24px 60px;
+  }
+
+  .post-wrap {
+    max-width: 100%;
+    padding: 0 24px 60px;
+  }
+
+  .post-body {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .site-nav {
-    padding: 28px 24px;
+    padding: 24px 20px;
   }
 
   .site-nav .logo {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .site-nav .nav-links {
     gap: 20px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .hero-spacer {
-    height: 60px;
+    height: 20px;
   }
 
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
-    padding: 0 24px;
+    padding: 0 20px;
     gap: 12px;
   }
 
+  .category-tile .tile-label {
+    font-size: 16px;
+  }
+
   .back-link {
-    padding: 16px 24px 0;
+    padding: 16px 20px 0;
   }
 
   .gallery-header {
-    padding: 12px 24px 24px;
+    padding: 12px 20px 20px;
   }
 
   .gallery-header h1 {
@@ -388,33 +422,81 @@ img {
 
   .masonry-grid {
     column-count: 2;
-    padding: 0 24px 60px;
+    padding: 0 20px 60px;
   }
 
   .thoughts-list {
-    padding: 40px 24px 60px;
+    padding: 40px 20px 60px;
+    max-width: 100%;
+  }
+
+  .blog-card .blog-title {
+    font-size: 26px;
   }
 
   .post-wrap {
-    padding: 0 24px 60px;
+    max-width: 100%;
+    padding: 0 20px 60px;
   }
 
   .post-wrap .post-title {
-    font-size: 32px;
+    font-size: 30px;
+  }
+
+  .post-body {
+    max-width: 100%;
+    font-size: 17px;
+  }
+
+  .post-body .pillar-block {
+    margin-left: 20px;
+  }
+
+  .lightbox-arrow {
+    font-size: 28px;
+    padding: 12px;
+  }
+
+  .lightbox-arrow.prev {
+    left: 8px;
+  }
+
+  .lightbox-arrow.next {
+    right: 8px;
   }
 }
 
+/* Small phone */
 @media (max-width: 480px) {
+  .site-nav {
+    padding: 20px 16px;
+  }
+
+  .site-nav .logo {
+    font-size: 22px;
+  }
+
+  .site-nav .nav-links {
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .hero-spacer {
+    height: 10px;
+  }
+
   .category-grid {
     grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+
+  .category-tile .tile-label {
+    font-size: 15px;
   }
 
   .masonry-grid {
     column-count: 1;
-  }
-
-  .site-nav {
-    padding: 20px 16px;
+    padding: 0 16px 40px;
   }
 
   .category-grid,
@@ -425,5 +507,28 @@ img {
   .post-wrap {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .post-wrap .post-title {
+    font-size: 26px;
+  }
+
+  .post-body {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .post-body .pillar-block {
+    margin-left: 12px;
+  }
+
+  .lightbox-overlay img {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 16px;
   }
 }
