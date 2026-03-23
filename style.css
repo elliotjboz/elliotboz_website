@@ -82,24 +82,47 @@ img {
 
 .category-tile {
   display: block;
+  position: relative;
 }
 
 .category-tile .tile-img-wrap {
   overflow: hidden;
   border-radius: 2px;
   aspect-ratio: 4 / 3;
+  position: relative;
 }
 
 .category-tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .category-tile:hover img {
   transform: scale(1.03);
-  filter: brightness(1.05);
+  filter: brightness(0.7);
+}
+
+.category-tile .tile-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.category-tile:hover .tile-overlay {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .category-tile .tile-label {
@@ -110,24 +133,30 @@ img {
 }
 
 /* ===== BACK LINK ===== */
-.back-link {
-  display: inline-block;
+.breadcrumb {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 24px 60px 0;
-  font-size: 16px;
+  padding: 24px 40px 0;
+  font-size: 15px;
   letter-spacing: 0.02em;
-  opacity: 0.6;
-  transition: opacity 0.2s;
+  color: #888;
 }
 
-.back-link:hover {
-  opacity: 1;
+.breadcrumb a {
+  color: #888;
+  transition: color 0.2s;
 }
 
-.page-back-wrap {
-  max-width: 1800px;
-  margin: 0 auto;
+.breadcrumb a:hover {
+  color: #1a1a1a;
+}
+
+.breadcrumb .separator {
+  margin: 0 8px;
+}
+
+.breadcrumb .current {
+  color: #1a1a1a;
 }
 
 /* ===== GALLERY PAGE ===== */
@@ -353,13 +382,13 @@ img {
 /* ===== FOOTER ===== */
 .site-footer {
   max-width: 1800px;
-  margin: 0 auto;
-  padding: 60px 40px 40px;
+  margin: 80px auto 0;
+  padding: 30px 40px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid rgba(26, 26, 26, 0.12);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.02em;
   color: #888;
 }
@@ -432,11 +461,16 @@ img {
     gap: 12px;
   }
 
+  .category-tile .tile-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .category-tile .tile-label {
     font-size: 16px;
   }
 
-  .back-link {
+  .breadcrumb {
     padding: 16px 20px 0;
   }
 
@@ -539,7 +573,7 @@ img {
   }
 
   .category-grid,
-  .back-link,
+  .breadcrumb,
   .gallery-header,
   .masonry-grid,
   .thoughts-list,
