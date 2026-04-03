@@ -3,32 +3,334 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thoughts — Elliot Boz</title>
+  <title>Black Box — Elliot Boz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== BLACK BOX PAGE OVERRIDES ===== */
+    .bb-page {
+      background: #0A0A0A;
+      min-height: 100vh;
+    }
+
+    .bb-page .site-nav {
+      max-width: 1800px;
+    }
+
+    .bb-page .site-nav .logo {
+      color: #FFFFFF;
+    }
+
+    .bb-page .site-nav .nav-links a {
+      color: #888;
+    }
+
+    .bb-page .site-nav .nav-links a.active {
+      color: #FFFFFF;
+      border-bottom-color: #FFFFFF;
+    }
+
+    .bb-page .site-nav .nav-links a:hover {
+      color: #FFFFFF;
+      opacity: 1;
+    }
+
+    /* Hero Section */
+    .bb-hero {
+      text-align: center;
+      padding: 60px 40px 50px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Animated Black Box */
+    .bb-cube-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 40px;
+      perspective: 600px;
+      cursor: pointer;
+    }
+
+    .bb-cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(-15deg) rotateY(25deg);
+      animation: bbFloat 6s ease-in-out infinite;
+      transition: transform 0.4s ease;
+    }
+
+    .bb-cube-wrap:hover .bb-cube {
+      transform: rotateX(-25deg) rotateY(45deg);
+    }
+
+    .bb-cube-face {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(2px);
+    }
+
+    .bb-cube-face.front  { transform: translateZ(60px); }
+    .bb-cube-face.back   { transform: rotateY(180deg) translateZ(60px); }
+    .bb-cube-face.left   { transform: rotateY(-90deg) translateZ(60px); }
+    .bb-cube-face.right  { transform: rotateY(90deg) translateZ(60px); }
+    .bb-cube-face.top    { transform: rotateX(90deg) translateZ(60px); }
+    .bb-cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+    /* Lid glow on hover */
+    .bb-cube-wrap:hover .bb-cube-face.top {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05) inset;
+    }
+
+    @keyframes bbFloat {
+      0%, 100% { transform: rotateX(-15deg) rotateY(25deg) translateY(0); }
+      50% { transform: rotateX(-15deg) rotateY(25deg) translateY(-8px); }
+    }
+
+    .bb-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 52px;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .bb-description {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #888;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Blog Cards — Dark Theme */
+    .bb-posts {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    .bb-card {
+      display: block;
+      background: #141414;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 20px;
+      border-left: 3px solid #333;
+      transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bb-card:hover {
+      border-left-color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255, 255, 255, 0.03);
+    }
+
+    .bb-card-status {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .bb-card-status.opened {
+      background: rgba(255, 255, 255, 0.08);
+      color: #aaa;
+    }
+
+    .bb-card-status.sealed {
+      background: rgba(255, 255, 255, 0.04);
+      color: #555;
+    }
+
+    .bb-card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      color: #555;
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .bb-card-question {
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .bb-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .bb-card-date {
+      font-size: 13px;
+      color: #444;
+    }
+
+    .bb-card-arrow {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: #333;
+      transition: color 0.3s, right 0.3s;
+    }
+
+    .bb-card:hover .bb-card-arrow {
+      color: #FFFFFF;
+      right: 24px;
+    }
+
+    /* Sealed card style */
+    .bb-card.sealed-card {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .bb-card.sealed-card:hover {
+      transform: none;
+      border-left-color: #333;
+      box-shadow: none;
+    }
+
+    /* Footer override */
+    .bb-page .site-footer {
+      border-top-color: rgba(255, 255, 255, 0.08);
+      color: #444;
+    }
+
+    .bb-page .site-footer a {
+      color: #444;
+    }
+
+    .bb-page .site-footer a:hover {
+      color: #888;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .bb-hero {
+        padding: 40px 24px 40px;
+      }
+
+      .bb-title {
+        font-size: 36px;
+      }
+
+      .bb-description {
+        font-size: 15px;
+      }
+
+      .bb-posts {
+        padding: 0 20px 60px;
+      }
+
+      .bb-card {
+        padding: 24px;
+      }
+
+      .bb-card-title {
+        font-size: 24px;
+      }
+
+      .bb-cube-wrap {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 30px;
+      }
+
+      .bb-cube-face {
+        width: 80px;
+        height: 80px;
+      }
+
+      .bb-cube-face.front  { transform: translateZ(40px); }
+      .bb-cube-face.back   { transform: rotateY(180deg) translateZ(40px); }
+      .bb-cube-face.left   { transform: rotateY(-90deg) translateZ(40px); }
+      .bb-cube-face.right  { transform: rotateY(90deg) translateZ(40px); }
+      .bb-cube-face.top    { transform: rotateX(90deg) translateZ(40px); }
+      .bb-cube-face.bottom { transform: rotateX(-90deg) translateZ(40px); }
+    }
+  </style>
 </head>
-<body>
+<body class="bb-page">
 
   <nav class="site-nav">
     <a href="index.html" class="logo">Elliot Boz</a>
     <div class="nav-links">
       <a href="index.html">Photos</a>
-      <a href="thoughts.html" class="active">Thoughts</a>
+      <a href="thoughts.html" class="active">Black Box</a>
     </div>
   </nav>
 
-  <div class="thoughts-list">
+  <!-- Hero -->
+  <div class="bb-hero">
+    <div class="bb-cube-wrap">
+      <div class="bb-cube">
+        <div class="bb-cube-face front"></div>
+        <div class="bb-cube-face back"></div>
+        <div class="bb-cube-face left"></div>
+        <div class="bb-cube-face right"></div>
+        <div class="bb-cube-face top"></div>
+        <div class="bb-cube-face bottom"></div>
+      </div>
+    </div>
+    <h1 class="bb-title">Black Box</h1>
+    <p class="bb-description">I like to explore things that feel like a black box — systems, ideas, and industries that are opaque from the outside. These are my attempts to open them up.</p>
+  </div>
 
-    <div class="blog-card">
-      <a href="blog/the-crossroads.html">
-        <img src="images/blog/crossroads.jpg" alt="The Crossroads" class="blog-cover" onerror="this.style.display='none'">
-      </a>
-      <div class="blog-date">February 11, 2026</div>
-      <a href="blog/the-crossroads.html" class="blog-title">The Crossroads</a>
-      <a href="blog/the-crossroads.html" class="blog-read-more">Read More →</a>
+  <!-- Posts -->
+  <div class="bb-posts">
+
+    <a href="blog/the-crossroads.html" class="bb-card">
+      <span class="bb-card-status opened">Opened</span>
+      <span class="bb-card-tag">Energy</span>
+      <div class="bb-card-question">How does US energy policy actually get made — and what happens when priorities shift?</div>
+      <div class="bb-card-title">The Crossroads</div>
+      <div class="bb-card-date">February 11, 2026</div>
+      <span class="bb-card-arrow">→</span>
+    </a>
+
+    <div class="bb-card sealed-card">
+      <span class="bb-card-status sealed">Sealed</span>
+      <span class="bb-card-tag">Entertainment</span>
+      <div class="bb-card-question">What does it actually take to go from script to screen — and who controls what you see?</div>
+      <div class="bb-card-title">The Cut</div>
+      <div class="bb-card-date">Coming soon</div>
+    </div>
+
+    <div class="bb-card sealed-card">
+      <span class="bb-card-status sealed">Sealed</span>
+      <span class="bb-card-tag">Military</span>
+      <div class="bb-card-question">How is the US Army actually organized — and what do the different branches, units, and roles really do?</div>
+      <div class="bb-card-title">The Ranks</div>
+      <div class="bb-card-date">Coming soon</div>
     </div>
 
   </div>
