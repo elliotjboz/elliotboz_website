@@ -9,8 +9,147 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    /* ===== BLACK BOX ARTICLE OVERRIDES ===== */
+    .bb-article-page {
+      background: #0A0A0A;
+      min-height: 100vh;
+    }
+
+    .bb-article-page .site-nav .logo { color: #FFFFFF; }
+    .bb-article-page .site-nav .nav-links a { color: #888; }
+    .bb-article-page .site-nav .nav-links a:hover { color: #FFFFFF; opacity: 1; }
+
+    .bb-article-page .breadcrumb { color: #555; }
+    .bb-article-page .breadcrumb a { color: #555; }
+    .bb-article-page .breadcrumb a:hover { color: #FFFFFF; }
+    .bb-article-page .breadcrumb .current { color: #999; }
+
+    /* Article wrapper */
+    .bb-article {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 60px 80px;
+    }
+
+    .bb-article-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .bb-article-question {
+      font-size: 18px;
+      font-style: italic;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .bb-article-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 46px;
+      font-weight: 500;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .bb-article-date {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 40px;
+    }
+
+    .bb-article-cover {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    /* Body text */
+    .bb-article-body {
+      font-size: 18px;
+      line-height: 1.85;
+      color: #CCCCCC;
+    }
+
+    .bb-article-body p {
+      margin-bottom: 28px;
+    }
+
+    .bb-article-body strong {
+      color: #FFFFFF;
+    }
+
+    /* Pillar blocks */
+    .bb-article-body .pillar-block {
+      margin-left: 24px;
+      margin-bottom: 28px;
+      padding-left: 20px;
+      border-left: 2px solid #333;
+    }
+
+    .bb-article-body .pillar-block p {
+      margin-bottom: 8px;
+    }
+
+    .bb-article-body .pillar-block ol {
+      margin-left: 20px;
+      margin-top: 8px;
+      color: #999;
+    }
+
+    .bb-article-body .pillar-block ol li {
+      margin-bottom: 6px;
+      line-height: 1.7;
+    }
+
+    /* Divider */
+    .bb-article-divider {
+      width: 40px;
+      height: 2px;
+      background: #333;
+      margin: 48px auto;
+    }
+
+    /* Footer */
+    .bb-article-page .site-footer {
+      border-top-color: rgba(255, 255, 255, 0.08);
+      color: #444;
+    }
+    .bb-article-page .site-footer a { color: #444; }
+    .bb-article-page .site-footer a:hover { color: #888; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .bb-article {
+        padding: 16px 20px 60px;
+      }
+      .bb-article-title {
+        font-size: 32px;
+      }
+      .bb-article-body {
+        font-size: 16px;
+      }
+      .bb-article-question {
+        font-size: 16px;
+      }
+      .bb-article-body .pillar-block {
+        margin-left: 12px;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="bb-article-page">
 
   <nav class="site-nav">
     <a href="../index.html" class="logo">Elliot Boz</a>
@@ -24,12 +163,15 @@
     <a href="../thoughts.html">Black Box</a><span class="separator">/</span><span class="current">The Crossroads</span>
   </div>
 
-  <div class="post-wrap">
-    <img src="../images/blog/crossroads.jpg" alt="The Crossroads" class="post-cover" onerror="this.style.display='none'">
-    <div class="post-date">February 11, 2026</div>
-    <h1 class="post-title">The Crossroads</h1>
+  <div class="bb-article">
+    <span class="bb-article-tag">Energy</span>
+    <div class="bb-article-question">How does US energy policy actually get made — and what happens when priorities shift?</div>
+    <h1 class="bb-article-title">The Crossroads</h1>
+    <div class="bb-article-date">February 11, 2026</div>
 
-    <div class="post-body">
+    <img src="../images/blog/crossroads.jpg" alt="The Crossroads" class="bb-article-cover" onerror="this.style.display='none'">
+
+    <div class="bb-article-body">
       <p>We are at a crossroads with energy. The US has made a decision at these crossroads - a decision that will affect the US economy, the geopolitical power the US holds on the global landscape, and most critically, the price of oil and non-oil energy sources for everyday American consumers. Before we begin to understand this decision, let's look at a reference point in history - an example of a country defining and executing its energy goals. Roll back your clocks to Soviet Russia in the 1960s.</p>
 
       <p>During this period, the economy of the Union of Soviet Socialist Republics (USSR) was struggling immensely. The country was in grave need of essentials such as food and clothing for its people. The USSR's largest export at the time, oil. Oil accounted for approximately two-thirds of the country's total exports.</p>
@@ -51,6 +193,8 @@
       <p>Specifically, such a system - where a single company manages everything from drilling to sales rather than separate functions across government entities - can identify and solve bottlenecks across the supply chain more efficiently (e.g., investing in pipeline capacity, optimizing transportation routes, or tailoring sales strategies). A horizontal system limits information sharing, reduces incentives for bottleneck innovation, and ultimately suppresses efficiency and profitability.</p>
 
       <p>This extreme example illustrates that selecting the right pillar behind an energy strategy is critical to a nation's long-term stability. It also shows us that there are more factors affecting a nation's energy goals than we might expect. The USSR's emphasis on control over performance proved costly, and over decades, that choice brought the country to the end of its crossroads.</p>
+
+      <div class="bb-article-divider"></div>
 
       <p>Fast forward to the US, today. On January 20th, 2025, the White House released an executive order titled "Unleashing American Energy," outlining the administration's energy strategy for the years ahead.</p>
 
