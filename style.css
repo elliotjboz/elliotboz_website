@@ -5,6 +5,9 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
 body {
   background-color: #e8e5dc;
   color: #1a1a1a;
