@@ -6,7 +6,7 @@
 }
 
 html {
-  scrollbar-gutter: stable;
+  overflow-y: scroll;
 }
 body {
   background-color: #e8e5dc;
